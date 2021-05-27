@@ -1,0 +1,40 @@
+# Wavefunctions of the Infinite Square Well
+# Nicholas Drexler - Python using Numpy and Matplotlib
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+a = 3e-10
+n = 2
+m = 9.11e-31
+hbar = 1.05e-34
+step = 1e-12
+A = np.sqrt(2/a)
+
+x_array = []
+y_array = []
+
+En =  ( (n**2) * (np.pi**2) * (hbar)**2 ) / ( 2 * m * a**2 )
+
+def psi (n):
+    x = 0.0
+    while x < a:
+        y = A*np.sin(n*np.pi*x/a)
+        x_array.append(x)
+        y_array.append(y)
+        x = x + step
+    return y_array
+
+plt.figure()
+
+plt.title("Electron Wavefunction in the Infinite Square Well")
+plt.xlabel("Values of x between 0 and a")
+plt.ylabel("$\psi$ (x)")
+
+plt.plot(x_array,psi(n), 'k', label = "n=")
+
+plt.legend()
+plt.grid()
+plt.show()
+
+print(En)
